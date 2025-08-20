@@ -81,7 +81,7 @@ export function AppSidebarUser({
               <Avatar className="rounded-full size-8 border">
                 <AvatarImage
                   className="object-cover"
-                  src={user?.image || "/pf.png"}
+                  src={user?.image || ""}
                   alt={user?.name || ""}
                 />
                 <AvatarFallback>{user?.name?.slice(0, 1) || ""}</AvatarFallback>
@@ -98,10 +98,7 @@ export function AppSidebarUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-full">
-                  <AvatarImage
-                    src={user?.image || "/pf.png"}
-                    alt={user?.name || ""}
-                  />
+                  <AvatarImage src={user?.image || ""} alt={user?.name || ""} />
                   <AvatarFallback className="rounded-lg">
                     {user?.name?.slice(0, 1) || ""}
                   </AvatarFallback>
