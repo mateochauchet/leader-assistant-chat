@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { AgentSummary } from "app-types/agent";
+import { ChatMention } from "app-types/chat";
 import { Card, CardDescription, CardHeader, CardTitle } from "ui/card";
 import { Button } from "ui/button";
 import { Plus, ArrowUpRight } from "lucide-react";
@@ -16,6 +17,8 @@ import { fetcher } from "lib/utils";
 import { Visibility } from "@/components/shareable-actions";
 import { ShareableCard } from "@/components/shareable-card";
 import { notify } from "lib/notify";
+import { appStore } from "@/app/store";
+import { useCallback } from "react";
 
 interface AgentsListProps {
   initialMyAgents: AgentSummary[];
@@ -51,6 +54,59 @@ export function AgentsList({
   const { toggleBookmark: toggleBookmarkHook } = useBookmark({
     itemType: "agent",
   });
+
+  // Lógica de activación de agente (copiada del sidebar)
+  const handleAgentClick = useCallback(
+    (agent: AgentSummary) => {
+      const currentThreadId = appStore.getState().currentThreadId;
+
+      const newMention: ChatMention = {
+        type: "agent",
+        agentId: agent.id,
+        name: agent.name,
+        icon: agent.icon,
+        description: agent.description,
+      };
+
+      if (currentThreadId) {
+        appStore.setState((prev) => {
+          const currentMentions = prev.threadMentions[currentThreadId] || [];
+
+          const target = currentMentions.find(
+            (mention) =>
+              mention.type == "agent" && mention.agentId === agent.id,
+          );
+
+          if (target) {
+            toast.success(`${agent.name} is already active`);
+            return prev;
+          }
+
+          return {
+            threadMentions: {
+              ...prev.threadMentions,
+              [currentThreadId]: [
+                ...currentMentions.filter((v) => v.type != "agent"),
+                newMention,
+              ],
+            },
+          };
+        });
+
+        toast.success(`${agent.name} activated`);
+        router.push("/");
+      } else {
+        router.push("/");
+
+        appStore.setState(() => ({
+          pendingThreadMention: newMention,
+        }));
+
+        toast.success(`${agent.name} activated`);
+      }
+    },
+    [router],
+  );
 
   const toggleBookmark = async (agentId: string, isBookmarked: boolean) => {
     await toggleBookmarkHook({ id: agentId, isBookmarked });
@@ -144,6 +200,7 @@ export function AgentsList({
               key={agent.id}
               type="agent"
               item={agent}
+              onClick={() => handleAgentClick(agent)}
               href={`/agent/${agent.id}`}
               onVisibilityChange={updateVisibility}
               onDelete={deleteAgent}
@@ -166,6 +223,7 @@ export function AgentsList({
               type="agent"
               item={agent}
               isOwner={false}
+              onClick={() => handleAgentClick(agent)}
               href={`/agent/${agent.id}`}
               onBookmarkToggle={toggleBookmark}
             />

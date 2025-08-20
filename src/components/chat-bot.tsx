@@ -105,7 +105,7 @@ export default function ChatBot({ threadId, initialMessages, slots }: Props) {
     threadId,
   });
 
-  const [showParticles, setShowParticles] = useState(isFirstTime);
+  const [showParticles, setShowParticles] = useState(false);
 
   const {
     messages,
