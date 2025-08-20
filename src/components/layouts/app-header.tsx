@@ -3,12 +3,7 @@
 import { useSidebar } from "ui/sidebar";
 import { Tooltip, TooltipContent, TooltipTrigger } from "ui/tooltip";
 import { Toggle } from "ui/toggle";
-import {
-  AudioWaveformIcon,
-  ChevronDown,
-  MessageCircleDashed,
-  PanelLeft,
-} from "lucide-react";
+import { ChevronDown, PanelLeft } from "lucide-react";
 import { Button } from "ui/button";
 import { Separator } from "ui/separator";
 
