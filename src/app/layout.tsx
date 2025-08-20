@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "better-chatbot",
+  title: "Managment AI",
   description:
-    "Better Chatbot is a chatbot that uses the Tools to answer questions.",
+    "Managment AI is a chatbot to help leaders and managers to manage their teams and projects.",
 };
 
 // const themes = BASE_THEMES.flatMap((t) => [t, `${t}-dark`]);

@@ -139,7 +139,6 @@
     },
     "Thread": {
       "chat": "Chat",
-
       "renameChat": "Renombrar",
       "deleteChat": "Eliminar Chat",
       "deleteUnarchivedChats": "Eliminar Todos los Chats No Archivados",
@@ -154,7 +153,6 @@
       "threadUpdated": "Hilo actualizado",
       "areYouSureYouWantToDeleteThisChatThread": "¿Estás seguro de que quieres eliminar este hilo de chat?"
     },
-
     "ChatPreferences": {
       "title": "Preferencias de Chat",
       "whatShouldWeCallYou": "¿Cómo deberíamos llamarte?",
@@ -221,7 +219,6 @@
     "theme": "Tema",
     "signOut": "Cerrar sesión",
     "language": "Idioma",
-
     "showAllChats": "Ver Todos los Chats",
     "showLessChats": "Mostrar menos",
     "reportAnIssue": "Reportar un problema",
@@ -271,8 +268,8 @@
     "generateAgentDetailedGreeting": "¡Hola! Te ayudaré a crear tu propio agente. ¿Qué te gustaría crear? Puedes escribir de forma breve o detallada.",
     "inputPromptHere": "escribe el prompt aquí...",
     "agentNamePlaceholder": "better-agent",
-    "myAgents": "Mis Agentes",
-    "sharedAgents": "Agentes Compartidos",
+    "myAgents": "Mi Equipo",
+    "sharedAgents": "Otros Agentes",
     "noAgents": "Aún no hay agentes",
     "createFirst": "Crea tu primer agente para empezar",
     "noSharedAgents": "No hay agentes compartidos",
